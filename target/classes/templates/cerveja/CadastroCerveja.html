@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="utf-8">
 </head>
@@ -7,12 +8,16 @@
 	<h1>Projeto Brewer de Cervejas</h1>
 	
 	<form method=POST>
+		<span th:text="${mensagem}"></span>
+		<br>
 		<label>SKU</label>
 		<input type="text" name="sku">
 		<br>
 		<label>NOME</label>
 		<input type="text" name="nome">
-		<br>	
+		<br>
+		<label>DESCRICAO</label>
+		<input type="text" name="descricao">	
 		
 		<input type="submit" value="salvar">
 	</form>
