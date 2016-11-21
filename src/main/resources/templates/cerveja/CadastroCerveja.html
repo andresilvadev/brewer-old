@@ -7,17 +7,26 @@
 <body>
 	<h1>Projeto Brewer de Cervejas</h1>
 	
-	<form method=POST>
+	<form method=POST th:object="${cerveja}">
+				
+		<div th:each="erro : ${#fields.detailedErrors()}">
+			<span th:text="${erro.message}"></span>
+		</div>
+			
 		<span th:text="${mensagem}"></span>
 		<br>
-		<label>SKU</label>
-		<input type="text" name="sku">
+		
+		<label for="sku">SKU</label>
+		<input type="text" id="sku" th:field="*{sku}">
 		<br>
-		<label>NOME</label>
-		<input type="text" name="nome">
+		
+		<label for="nome">NOME</label>
+		<input type="text" id="nome" th:field="*{nome}">
 		<br>
-		<label>DESCRIÇÃO</label>
-		<input type="text" name="descricao">	
+		
+		<label for="descricao">DESCRIÇÃO</label>
+		<textarea rows="3" cols="30" id="descricao" th:field="*{descricao}"></textarea>
+		<br>	
 		
 		<input type="submit" value="salvar">
 	</form>
