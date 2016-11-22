@@ -9,6 +9,7 @@ CREATE TABLE cerveja(
 	nome VARCHAR(80) NOT NULL,
 	descricao TEXT NOT NULL,
 	valor DECIMAL(10,2) NOT NULL,
+	quantidade_estoque INTEGER NOT NULL,
 	teor_alcoolico DECIMAL(10,2) NOT NULL,
 	comissao DECIMAL(10,2) NOT NULL,
 	sabor VARCHAR(50) NOT NULL,	
