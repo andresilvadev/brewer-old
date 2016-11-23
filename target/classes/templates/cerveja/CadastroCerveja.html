@@ -6,7 +6,7 @@
 	layout:decorator="'layout/LayoutPadrao'">
 	
 <head>
-	<title>Cadastro de cliente</title>
+	<title>Cadastro de cerveja</title>
 </head>
 
 <body>
@@ -16,7 +16,7 @@
 	<div class="page-header">
 		<div class="container-fluid">
 			<h1>
-				Cadastro de produto
+				Cadastro de cerveja
 			</h1>
 		</div>
 	</div>
@@ -50,7 +50,7 @@
 				<div class="col-sm-3 form-group">
 					<label for="estilo">ESTILO</label>
 					<div class="bw-field-action">
-						<select name="estilo" id="estilo" class="form-control">
+						<select id="estilo" class="form-control" th:field="*{estilo}">
 							<option value="">Selecione o estilo</option>
 							<option th:each="estilo : ${estilos}" th:value="${estilo.codigo}" th:text="${estilo.nome}"></option>  
 						</select>
