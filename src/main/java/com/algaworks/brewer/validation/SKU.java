@@ -17,7 +17,7 @@ import javax.validation.constraints.Pattern;
 public @interface SKU {
 	
 	@OverridesAttribute(constraint = Pattern.class, name = "message")
-	String message() default "SKU deve seguir o padrão XX9999";
+	String message() default "Sku deve seguir o padrão XX9999";
 	
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default{};
