@@ -8,6 +8,11 @@
 
 	<web>
 		<link target="/">
+			<dir name="C:/Users/Andre Silva/workspace/Brewer/target/m2e-wtp/web-resources">
+				<exclude name="/"/>
+			</dir>
+		</link>
+		<link target="/">
 			<dir name="C:/Users/Andre Silva/workspace/Brewer/src/main/webapp">
 			</dir>
 		</link>
