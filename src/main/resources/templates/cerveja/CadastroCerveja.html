@@ -8,6 +8,8 @@
 	
 <head>
 	<title>Cadastro de cerveja</title>
+	
+	<link rel="stylesheet" th:href="@{/stylesheets/vendors/upload.min.css}" />
 </head>
 
 <body>
@@ -36,19 +38,19 @@
 					<input id="sku" type="text" class="form-control" th:field="*{sku}"/>						
 				</div>
 				<div class="col-sm-10 form-group" brewer:classforerror="nome">						
-					<label for="nome" class="control-label">NOME</label>
+					<label for="nome" class="control-label">Nome</label>
 					<input id="nome" type="text" class="form-control" th:field="*{nome}"/>						
 				</div>
 			</div>
 		
 			<div class="form-group" brewer:classforerror="descricao">
-				<label for="descricao" class="control-label">DESCRIÇÃO</label>
+				<label for="descricao" class="control-label">Descrição</label>
 				<textarea id="descricao" rows="3" class="form-control" th:field="*{descricao}"></textarea>
 			</div>
 		
 			<div class="row">
 				<div class="col-sm-3 form-group" brewer:classforerror="estilo">
-					<label for="estilo" class="control-label">ESTILO</label>
+					<label for="estilo" class="control-label">Estilo</label>
 					<div class="bw-field-action">
 						<select id="estilo" class="form-control" th:field="*{estilo}">
 							<option value="">Selecione o estilo</option>
@@ -63,7 +65,7 @@
 				</div>
 					
 				<div class="col-sm-3 form-group" brewer:classforerror="sabor">
-					<label for="sabor" class="control-label">SABOR</label>
+					<label for="sabor" class="control-label">Sabor</label>
 					<select name="sabor" id="sabor" class="form-control" th:field="*{sabor}">
 						<option value="">Selecione o sabor</option>
 						<option th:each="sabor : ${sabores}" th:value="${sabor}" th:text="${sabor.descricao}"></option>  
@@ -71,7 +73,7 @@
 				</div>
 					
 				<div class="col-sm-3 form-group" brewer:classforerror="teorAlcoolico">
-					<label for="teorAlcoolico" class="control-label">TEOR ALCOÓLICO</label>
+					<label for="teorAlcoolico" class="control-label">Teor alcoólico</label>
 					<div class="input-group">
 						<input id="teorAlcoolico" type="text" class="form-control js-decimal" th:field="*{teorAlcoolico}"/>
 						<div class="input-group-addon">
@@ -81,7 +83,7 @@
 				</div>
 					
 				<div class="col-lg-3 col-sm-6 form-group" brewer:classforerror="origem">						
-					<label for="origen" class="control-label">ORIGEM</label>
+					<label for="origen" class="control-label">Origem</label>
 					<div>
 						<th:block th:each="origem : ${origens}">
 							<div class="radio radio-inline">
@@ -95,7 +97,7 @@
 				
 			<div class="row">
 				<div class="col-sm-3 form-group" brewer:classforerror="valor">
-					<label for="valor" class="control-label">VALOR</label>
+					<label for="valor" class="control-label">Valor</label>
 				<div class="input-group">
 					<div class="input-group-addon">
 						<span class="glyphicon glyphicon-usd" aria-hidden="true"></span>
@@ -105,7 +107,7 @@
 				</div>
 					
 				<div class="col-sm-3 form-group" brewer:classforerror="comissao">
-					<label for="comissao" class="control-label">COMISSÃO</label>
+					<label for="comissao" class="control-label">Comissão</label>
 					<div class="input-group">							
 						<input id="comissao" type="text" class="form-control js-decimal" th:field="*{comissao}"/>
 						<div class="input-group-addon">
@@ -115,7 +117,7 @@
 				</div>
 					
 				<div class="col-sm-3 form-group" brewer:classforerror="quantidadeEstoque">
-					<label for="estoque" class="control-label">ESTOQUE</label>
+					<label for="estoque" class="control-label">Estoque</label>
 					<div class="input-group">							
 						<input id="estoque" type="text" class="form-control js-plain" th:field="*{quantidadeEstoque}"/>
 						<div class="input-group-addon">
@@ -123,12 +125,28 @@
 						</div>													
 					</div>
 				</div>
+				
+				<div>
+					<div class="form-group col-sm-12">
+						<label class="control-label">Foto da cerveja</label>
+					
+						<div id="upload-drop" class="bw-upload">
+	                    	<i class="glyphicon glyphicon-cloud-upload"></i>
+	                    	<span>Arraste a foto aqui ou</span> 
+	                    	
+	                    	<a class="bw-upload-form-file">
+	                    		selecione
+	                    		<input id="upload-select" type="file" accept=".jpg, .jpeg, .png">
+	                    	</a>.
+	                    </div>
+	                </div>
+				</div>
 					
 			</div>
 				
 			<div class="form-group">
-				<button class="btn  btn-primary" type="submit">SALVAR</button>
-				<a href="pesquisa-produtos.html" class="btn  btn-default">CANCELAR</a>					
+				<button class="btn  btn-primary" type="submit">Salvar</button>
+				<button class="btn  btn-default" type="reset">Cancelar</button>							
 			</div>
 		
 		</form>
@@ -140,6 +158,20 @@
 
 <th:block layout:fragment="javascript-extra">
 	<script th:src="@{/javascripts/estilo.cadastro-rapido.js}"></script>
+	<script th:src="@{/javascripts/vendors/uikit.min.js}"></script>
+	<script th:src="@{/javascripts/vendors/upload.min.js}"></script>
+	
+	<script>
+		$(function(){
+			var settings = {
+					type: 'json',
+					filelimit: 1,
+					allow: '*.(jpg|jpeg|png)'
+			};
+			UIkit.uploadSelect('#upload-select'), settings;
+			UIkit.uploadDrop('#upload-drop'), settings;
+		})
+	</script>
 </th:block>
 </body>
 </html>
