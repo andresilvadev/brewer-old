@@ -146,11 +146,11 @@
 	
 	<script>
 		$(function(){
-			var settings = {
+			var settings = {					
 					type: 'json',
 					filelimit: 1,
 					allow: '*.(jpg|jpeg|png)',
-					action: '/brewer/fotos,'
+					action: '/brewer/fotos',					
 					
 					complete: function(resposta){
 						$('input[name=foto]').val(resposta.nome);
