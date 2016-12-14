@@ -25,8 +25,7 @@
 	</div>
 
 	<div class="container-fluid"> 
-	
-		
+			
 			 	
 		<form method=POST th:object="${cerveja}" class="form-vertical  js-form-loading">
 			
@@ -166,7 +165,8 @@
 			var settings = {
 					type: 'json',
 					filelimit: 1,
-					allow: '*.(jpg|jpeg|png)'
+					allow: '*.(jpg|jpeg|png)',
+					action: '/brewer/fotos'
 			};
 			UIkit.uploadSelect('#upload-select'), settings;
 			UIkit.uploadDrop('#upload-drop'), settings;
