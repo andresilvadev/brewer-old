@@ -29,11 +29,15 @@ public class FotosController {
 		thread.start();
 		
 		return resultado;
-	}
-	
+	}	
 	
 	@GetMapping("/temp/{nome:.*}")
 	public byte[] recuperarFotoTemporaria(@PathVariable ("nome") String nome){
 		return fotoStorage.recuperarFotoTemporaria(nome);
+	}
+	
+	@GetMapping("/{nome:.*}")
+	public byte[] recuperar(@PathVariable String nome){
+		return fotoStorage.recuperar(nome);
 	}
 }

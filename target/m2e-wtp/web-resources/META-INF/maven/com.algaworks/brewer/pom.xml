@@ -47,6 +47,9 @@
 	<!-- Jackson - JSON -->
 	<jackson-core.version>2.7.5</jackson-core.version>
 	
+	<!-- Thumbnailator - GERADOR DE THUMBNAIL -->
+	<!-- https://github.com/coobird/thumbnailator -->
+	<thumbnailator.version>0.4.8</thumbnailator.version>	
   </properties>
   
   <build>
@@ -193,7 +196,15 @@
 			<artifactId>jackson-databind</artifactId>
 			<version>${jackson-core.version}</version>
 			<scope>compile</scope>
-		</dependency>		
+		</dependency>
+		
+		<!-- Thumbnailator - GERADOR THUMBNAIL -->
+		<dependency>
+			<groupId>net.coobird</groupId>
+			<artifactId>thumbnailator</artifactId>
+			<version>${thumbnailator.version}</version>
+			<scope>compile</scope>
+		</dependency>
 		
   	</dependencies>
   
