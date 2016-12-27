@@ -103,3 +103,8 @@
     
     font-size: 500px;
 }
+
+/* Colunas - Pesquisa de Estilos */
+.table-estilos-col-codigo {
+	width: 80px;
+}
