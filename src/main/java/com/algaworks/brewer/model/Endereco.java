@@ -4,13 +4,18 @@ import javax.persistence.Embeddable;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 @Embeddable
 public class Endereco {
 	
 	private String logradouro;
 	private String numero;
+	private String complemento;
 	private String cep;
+	
+	@Transient
+	private Estado estado;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "codigo_cidade")
@@ -32,6 +37,14 @@ public class Endereco {
 		this.numero = numero;
 	}
 	
+	public String getComplemento() {
+		return complemento;
+	}
+
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
+	}
+
 	public String getCep() {
 		return cep;
 	}
@@ -47,6 +60,14 @@ public class Endereco {
 	public void setCidade(Cidade cidade) {
 		this.cidade = cidade;
 	}
-	
+
+	public Estado getEstado() {
+		return estado;
+	}
+
+	public void setEstado(Estado estado) {
+		this.estado = estado;
+	}
+		
 	
 }
