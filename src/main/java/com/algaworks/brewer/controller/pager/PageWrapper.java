@@ -15,11 +15,10 @@ public class PageWrapper<T> {
 	private UriComponentsBuilder uriBuilder;
 	
 	public PageWrapper(Page<T> page, HttpServletRequest httpServletRequest){
-		this.page = page;
-		//this.uriBuilder = ServletUriComponentsBuilder.fromRequest(httpServletRequest);
+		this.page = page;		
 		String httpUrl = httpServletRequest.getRequestURL().append(
-			httpServletRequest.getQueryString() != null ? "?" + httpServletRequest.getQueryString() : "")
-				.toString().replaceAll("\\+", "%20");
+						 httpServletRequest.getQueryString() != null ? "?" + httpServletRequest.getQueryString() : "")
+						 .toString().replaceAll("\\+", "%20");
 				this.uriBuilder = UriComponentsBuilder.fromHttpUrl(httpUrl);
 	}
 	
