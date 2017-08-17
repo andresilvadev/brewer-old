@@ -35,4 +35,9 @@ public enum TipoPessoa {
 		return grupo;
 	}
 	
+	public static String removerFormatacao(String cpfOuCnpj) {
+		//REGEX retirando todos os pontos,todos os - e todas as barras
+		return cpfOuCnpj.replaceAll("\\.|-|/", "");			
+	}
+	
 }

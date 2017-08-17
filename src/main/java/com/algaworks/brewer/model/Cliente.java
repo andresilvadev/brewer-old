@@ -65,6 +65,10 @@ public class Cliente implements Serializable{
 		//REGEX retirando todos os pontos,todos os - e todas as barras
 		this.cpfOuCnpj = this.cpfOuCnpj.replaceAll("\\.|-|/", "");
 	}
+	
+	public String getCpfOuCnpjSemFormatacao() {
+		return TipoPessoa.removerFormatacao(this.cpfOuCnpj);
+	}
 
 	public Long getCodigo() {
 		return codigo;
