@@ -10,6 +10,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -45,7 +47,7 @@ public class Cliente implements Serializable{
 	@NotBlank(message = "CPF ou CNPJ é obrigatório")
 	@CPF(groups = CpfGroup.class) 
 	@CNPJ(groups = CnpjGroup.class)	
-	@Column(name = "cpn_cnpj")
+	@Column(name = "cpf_cnpj")
 	private String cpfOuCnpj;
 	
 	@NotBlank(message = "Um telefone é obrigatório")
@@ -56,6 +58,13 @@ public class Cliente implements Serializable{
 	
 	@Embedded
 	private Endereco endereco;
+	
+	@PrePersist
+	@PreUpdate
+	private void preInsertPreUpdate() {
+		//REGEX retirando todos os pontos,todos os - e todas as barras
+		this.cpfOuCnpj = this.cpfOuCnpj.replaceAll("\\.|-|/", "");
+	}
 
 	public Long getCodigo() {
 		return codigo;
