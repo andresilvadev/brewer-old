@@ -20,3 +20,33 @@ Sistema de venda de bebidas desenvolvido em Java com Spring MVC
 
 
 #### <i class="icon-file"></i> Dados de acesso para teste
+
+A aplicação funciona somente com a seguinte configuração
+
+- Tomcat v8.0
+- Baixar : mysql-connector-java-5.1.39-bin.jar e adicionar em C:\apache-tomcat-8.0.35\lib
+- Baixar : c3p0-0.9.5.2.jar e adicionar em C:\apache-tomcat-8.0.35\lib
+- Baixar : mchange-commons-java-0.2.11.jar e adicionar em C:\apache-tomcat-8.0.35\lib 
+- Arquivo context.xml em src > main > webapp > META-INF apontando para o banco existente na base de dados
+- Em Run Configuration, criar uma nova configuração de Maven Build, chamada de Brewer - Migration
+
+-	Onde:
+ 	
+		- Base directory = aponta o workspace do projeto
+		- Goals = flyway:migrate
+		- Add parameters
+		
+			name: flyway.user
+			value: root
+		
+			name: flyway.password
+			value: root
+	
+			name: flyway.url
+			value: jdbc:mysql://localhost/brewer?useSSL=false
+- Executar Brewer - Migration
+- Startar o projeto pelo TomCat		
+
+
+###### Obs:caso ocorra algum erro, apagar as tabelas do banco e criar novamente.
+	
