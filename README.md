@@ -17,6 +17,7 @@ Sistema de venda de bebidas desenvolvido em Java com Spring MVC
 > - [MySQL](https://www.mysql.com/)
 > - [My JRebel](https://my.jrebel.com/)
 > - [Tomcat 8](http://tomcat.apache.org/download-80.cgi)
+> - [Guava - Cache](https://github.com/google/guava)
 
 
 #### <i class="icon-file"></i> Dados de acesso para teste
