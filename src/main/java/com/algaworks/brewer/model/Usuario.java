@@ -49,9 +49,8 @@ public class Usuario implements Serializable {
 	private String confirmacaoSenha;
 
 	private Boolean ativo;
-
-	//@NotNull(message = "Selecione pelo menos um grupo")
-	@Size(min = 1)
+	
+	@Size(min = 1, message = "Selecione pelo menos um grupo")
 	@ManyToMany
 	@JoinTable(name = "usuario_grupo", joinColumns = @JoinColumn(name = "codigo_usuario"), 
 		inverseJoinColumns = @JoinColumn(name = "codigo_grupo"))	
