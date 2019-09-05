@@ -1,5 +1,6 @@
 package com.algaworks.brewer.repository.helper.usuario;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.EntityManager;
@@ -15,8 +16,22 @@ public class UsuariosImpl implements UsuariosQueries {
 	@Override
 	public Optional<Usuario> porEmailEAtivo(String email) {
 		return manager
-				.createQuery("from Usuario where lower(email) = lower(:email) and ativo = true", Usuario.class)
+				.createQuery("FROM Usuario WHERE lower(email) = lower(:email) and ativo = true", Usuario.class)
 				.setParameter("email", email).getResultList().stream().findFirst();
 	}
+
+	@Override
+	public List<String> permissoes(Usuario usuario) {
+		return manager
+				.createQuery(
+					"SELECT DISTINCT p.nome FROM Usuario u"
+					+ " INNER JOIN u.grupos g"
+					+ " INNER JOIN g.permissoes p"
+					+ " WHERE u = :usuario", String.class)
+				.setParameter("usuario", usuario)
+				.getResultList();
+	}
+	
+	
 
 }

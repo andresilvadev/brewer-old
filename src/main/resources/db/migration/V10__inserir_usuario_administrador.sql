@@ -1,0 +1,1 @@
+INSERT INTO usuario (nome, email, senha, ativo) VALUES ('Admin', 'admin@user.com', '$2a$10$te0e8aW9BCBJgbqb0TliyeQf1PUNyVTOFJXmAPHEDkquTkY3aeqV6', 1)
