@@ -57,8 +57,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.and()
 			.exceptionHandling()
 				.accessDeniedPage("/403")
-			.and()
-				.sessionManagement()
+				.and()
+			.sessionManagement()
 				.invalidSessionUrl("/login");
 		
 			// Mantém apenas um usuário por sessão
