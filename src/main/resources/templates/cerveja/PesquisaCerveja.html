@@ -54,13 +54,7 @@
 						<select id="estilo" class="form-control" th:field="*{estilo}">
 							<option value="">Todos os estilos</option>
 							<option th:each="estilo : ${estilos}" th:value="${estilo.codigo}" th:text="${estilo.nome}">Pale lager</option>
-						</select>
-						
-						<div class="bw-field-action__icon">
-							<a href="#" data-toggle="modal" data-target="#modalCadastroRapidoEstilo">
-								<i class="glyphicon  glyphicon-plus-sign  bw-glyphicon-large"></i>
-							</a>
-						</div>
+						</select>						
 					</div>
 				</div>
 				
@@ -91,7 +85,7 @@
 				</div>
 				
 				<div class="col-sm-6  form-group">
-					<label for="valorDe" class="control-label">Valor unit&aacute;rio</label>
+					<label for="valorDe" class="control-label">Valor unitário</label>
 					<div class="form-inline">
 						<input type="text" class="form-control aw-form-control-inline-sm js-decimal" id="valorDe" th:field="*{valorDe}"/>
 						<label for="valorAte" class="aw-form-label-between">at&eacute;</label>
