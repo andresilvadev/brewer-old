@@ -38,6 +38,10 @@ public class TabelaItensVenda {
 		return itens.size();
 	}
 	
+	public Object getItens() {
+		return itens;
+	}
+	
 	/**
 	 * Obs:
 	 * stream() - é uma espécie de iterador do java 8
