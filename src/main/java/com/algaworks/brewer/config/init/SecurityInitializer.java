@@ -15,7 +15,7 @@ public class SecurityInitializer extends AbstractSecurityWebApplicationInitializ
 	protected void beforeSpringSecurityFilterChain(ServletContext servletContext) {
 		
 		// Determina o tempo de duração de cada sessão, usado caso seja necessário determinar o fim da sessão
-		//servletContext.getSessionCookieConfig().setMaxAge(60 * 60 * 8);
+		//servletContext.getSessionCookieConfig().setMaxAge(20);
 		
 		// Evita de aparecer o jsessionid na url e salva no cookies
 		servletContext.setSessionTrackingModes(EnumSet.of(SessionTrackingMode.COOKIE));

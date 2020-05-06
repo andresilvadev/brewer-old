@@ -4,7 +4,9 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -38,7 +40,7 @@ public class Venda {
 	private BigDecimal valorDesconto;
 	
 	@Column(name = "valor_total")
-	private BigDecimal valorTotal;
+	private BigDecimal valorTotal = BigDecimal.ZERO; // Inicializa uma venda com valor total de zero
 	
 	private String observacao;
 	
@@ -57,7 +59,7 @@ public class Venda {
 	private StatusVenda status = StatusVenda.ORCAMENTO; // Status inicial de uma venda é orçamento
 
 	@OneToMany(mappedBy = "venda", cascade = CascadeType.ALL)
-	private List<ItemVenda> itens;
+	private List<ItemVenda> itens = new ArrayList<>(); // Evita de dar nullpointerException
 	
 	@Transient
 	private String uuid;
@@ -187,6 +189,25 @@ public class Venda {
 	public void adicionarItens(List<ItemVenda> itens) {
 		this.itens = itens;
 		this.itens.forEach(i -> i.setVenda(this));
+	}
+	
+	public void calcularValorTotal() {
+		BigDecimal valorTotalItens = getItens().stream()
+			.map(ItemVenda::getValorTotal)  		// Mapeia o valor total
+			.reduce(BigDecimal::add)				// Soma todo mundo 
+			.orElse(BigDecimal.ZERO);				// Se não tiver itens recebe zero
+		
+		this.valorTotal = calcularValorTotal(valorTotalItens, getValorFrete(), getValorDesconto());		
+	}
+	
+	private BigDecimal calcularValorTotal(BigDecimal valorTotalItens, BigDecimal valorFrete, BigDecimal valorDesconto) {
+		BigDecimal valorTotal = valorTotalItens			// Valor total recebe o valor total dos itens
+				
+				// Cria um Big Decimal que pode ser nulo, se for nulo devolve 0 senão devolve o resultado do frete. 
+				// (Add) Soma com o valor do frete
+				.add(Optional.ofNullable(valorFrete).orElse(BigDecimal.ZERO))			
+				.subtract(Optional.ofNullable(valorDesconto).orElse(BigDecimal.ZERO)); 	// Desconta o valor do desconto
+		return valorTotal;
 	}
 	
 	@Override

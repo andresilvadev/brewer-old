@@ -79,8 +79,7 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
 		engine.addDialect(new LayoutDialect());
 		engine.addDialect(new BrewerDialect());
 		engine.addDialect(new DataAttributeDialect());
-		engine.addDialect(new SpringSecurityDialect());
-		
+		engine.addDialect(new SpringSecurityDialect());		
 		return engine;
 	}
 
@@ -130,7 +129,7 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
 	public CacheManager cacheManager() {
 		CacheBuilder<Object, Object> cacheBuilder = CacheBuilder.newBuilder()
 				.maximumSize(3) // Máximo de estados salvos no cache
-				.expireAfterAccess(60 * 60 * 24, TimeUnit.SECONDS); // Tempo de expiração sem usar o cache
+				.expireAfterAccess(20, TimeUnit.SECONDS); // Tempo de expiração sem usar o cache
 		
 		GuavaCacheManager cacheManager = new GuavaCacheManager();		
 		cacheManager.setCacheBuilder(cacheBuilder);
@@ -148,6 +147,5 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
 	@Bean
 	public DomainClassConverter<FormattingConversionService> domainClassConverter() {
 		return new DomainClassConverter<FormattingConversionService>(mvcConversionService());
-	}
-	
+	}	
 }

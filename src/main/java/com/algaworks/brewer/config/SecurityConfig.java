@@ -16,7 +16,6 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.algaworks.brewer.security.AppUserDetailsService;
 
-@Configuration
 @EnableWebSecurity
 @ComponentScan(basePackageClasses = AppUserDetailsService.class)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
