@@ -76,8 +76,8 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
 		engine.setEnableSpringELCompiler(true);
 		engine.setTemplateResolver(templateResolver());
 		
-		engine.addDialect(new BrewerDialect());
 		engine.addDialect(new LayoutDialect());
+		engine.addDialect(new BrewerDialect());
 		engine.addDialect(new DataAttributeDialect());
 		engine.addDialect(new SpringSecurityDialect());
 		
@@ -115,6 +115,7 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
 		// API de Datas do Java 8
 		DateTimeFormatterRegistrar dateTimeFormater = new DateTimeFormatterRegistrar();
 		dateTimeFormater.setDateFormatter(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+		dateTimeFormater.setTimeFormatter(DateTimeFormatter.ofPattern("HH:mm"));
 		dateTimeFormater.registerFormatters(conversionService);
 		
 		return conversionService;
