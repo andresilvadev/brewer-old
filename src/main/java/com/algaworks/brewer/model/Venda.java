@@ -191,13 +191,15 @@ public class Venda {
 		this.itens.forEach(i -> i.setVenda(this));
 	}
 	
-	public void calcularValorTotal() {
-		BigDecimal valorTotalItens = getItens().stream()
-			.map(ItemVenda::getValorTotal)  		// Mapeia o valor total
-			.reduce(BigDecimal::add)				// Soma todo mundo 
-			.orElse(BigDecimal.ZERO);				// Se não tiver itens recebe zero
-		
-		this.valorTotal = calcularValorTotal(valorTotalItens, getValorFrete(), getValorDesconto());		
+	public BigDecimal getValorTotalItens() {
+		return getItens().stream()
+					.map(ItemVenda::getValorTotal)  		// Mapeia o valor total
+					.reduce(BigDecimal::add)				// Soma todo mundo 
+					.orElse(BigDecimal.ZERO);				// Se não tiver itens recebe zero
+	}
+	
+	public void calcularValorTotal() {		
+		this.valorTotal = calcularValorTotal(getValorTotalItens(), getValorFrete(), getValorDesconto());		
 	}
 	
 	private BigDecimal calcularValorTotal(BigDecimal valorTotalItens, BigDecimal valorFrete, BigDecimal valorDesconto) {
