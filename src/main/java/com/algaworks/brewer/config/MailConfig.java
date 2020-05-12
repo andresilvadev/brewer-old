@@ -16,6 +16,7 @@ import com.algaworks.brewer.mail.Mailer;
 @Configuration
 @ComponentScan(basePackageClasses = Mailer.class)
 @PropertySource({"classpath:env/mail-${ambiente:local}.properties"})
+@PropertySource(value = { "file://${HOME}/.brewer-mail.properties" }, ignoreResourceNotFound = true)
 public class MailConfig {
 	
 	@Autowired
@@ -38,8 +39,8 @@ public class MailConfig {
 		props.put("mail.transport.protocol", "smtp");
 		props.put("mail.smtp.auth", true);
 		props.put("mail.smtp.starttls.enable", true);
-		props.put("mail.debug", true);
-		props.put("mail.smtp.connectiontimeout", 10000);
+		props.put("mail.debug", false);
+		props.put("mail.smtp.connectiontimeout", 10000); // miliseconds
 		
 		mailSender.setJavaMailProperties(props);
 		
