@@ -46,8 +46,8 @@ public class CervejasController {
 	@Autowired
 	private CadastroCervejaService cadastroCervejaService;
 	
-	@RequestMapping("/novo")
-	public ModelAndView novo(Cerveja cerveja){
+	@RequestMapping("/nova")
+	public ModelAndView nova(Cerveja cerveja){
 		ModelAndView mv = new ModelAndView("cerveja/CadastroCerveja");
 		mv.addObject("sabores", Sabor.values());
 		mv.addObject("estilos", estilos.findAll());
@@ -56,16 +56,15 @@ public class CervejasController {
 		return mv;
 	}
 	
-	@RequestMapping(value = "/novo", method = RequestMethod.POST)
-	public ModelAndView cadastrar(@Valid Cerveja cerveja, BindingResult result, Model model, RedirectAttributes attributes){
-		
-		if(result.hasErrors()){			
-			return novo(cerveja);
+	@RequestMapping(value = { "/nova", "{\\d+}" }, method = RequestMethod.POST)
+	public ModelAndView salvar(@Valid Cerveja cerveja, BindingResult result, Model model, RedirectAttributes attributes) {
+		if (result.hasErrors()) {
+			return nova(cerveja);
 		}
 		
 		cadastroCervejaService.salvar(cerveja);
-		attributes.addFlashAttribute("mensagem",  "Cerveja salva com sucesso!");		
-		return new ModelAndView("redirect:/cervejas/novo");
+		attributes.addFlashAttribute("mensagem", "Cerveja salva com sucesso!");
+		return new ModelAndView("redirect:/cervejas/nova");
 	}
 	
 	@GetMapping
@@ -101,4 +100,10 @@ public class CervejasController {
 		return ResponseEntity.ok().build();
 	}
 	
+	@GetMapping("/{codigo}")
+	public ModelAndView editar(@PathVariable("codigo") Cerveja cerveja) {
+		ModelAndView mv = nova(cerveja);
+		mv.addObject(cerveja);
+		return mv;
+	}	
 }
