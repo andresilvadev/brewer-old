@@ -16,6 +16,7 @@ import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.br.CNPJ;
@@ -29,6 +30,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "cliente")
+@DynamicUpdate
 @GroupSequenceProvider(ClienteGroupSequenceProvider.class)
 public class Cliente implements Serializable{
 
@@ -67,10 +69,6 @@ public class Cliente implements Serializable{
 	private void preInsertPreUpdate() {
 		//REGEX retirando todos os pontos,todos os - e todas as barras
 		this.cpfOuCnpj = this.cpfOuCnpj.replaceAll("\\.|-|/", "");
-	}
-	
-	public String getCpfOuCnpjSemFormatacao() {
-		return TipoPessoa.removerFormatacao(this.cpfOuCnpj);
 	}
 	
 	@PostLoad
@@ -133,6 +131,14 @@ public class Cliente implements Serializable{
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}	
+	
+	public String getCpfOuCnpjSemFormatacao() {
+		return TipoPessoa.removerFormatacao(this.cpfOuCnpj);
+	}
+
+	public boolean isNovo() {
+		return this.codigo == null;
+	}
 
 	@Override
 	public int hashCode() {
